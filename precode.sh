@@ -18,9 +18,6 @@ cd task
 touch dir2/empty
 
 # создаём файл task/dir2/hello.sh с таким содержанием:
-
-echo '#!/bin/bash' > dir2/hello.sh
-
 # #!/bin/bash
 # echo "$1, привет!"
 
@@ -38,16 +35,12 @@ ls dir2 > dir2/list.txt
 
 cp -r dir2/* dir3/dir4/
 
-cd ..
-
 # записываем в task/dir1/summary.txt список файлов с расширением *.txt
 # находящихся в task, включая поддиректории
 
-ls -R -r --group-directories-first task | grep "\.txt$" > task/dir1/summary.txt
+find -name "*.txt"  | xargs ls -R -r > dir1/summary.txt
 
 # дописываем в task/dir1/summary.txt содержимое task/dir2/list.txt
-
-cd task/
 
 cat dir2/list.txt >> dir1/summary.txt
 
@@ -55,10 +48,7 @@ cat dir2/list.txt >> dir1/summary.txt
 
 export NAME="Всем студентам"
 
-# запускаем task/dir2/hello.sh с переменной окружения NAME в качестве аргумента
-
-./dir2/hello.sh "$NAME"
-
+# запускаем task/dir2/hello.sh с переменной окружения NAME в качестве аргумент
 # вывод скрипта должен дописаться в файл task/dir1/summary.txt
 
 ./dir2/hello.sh "$NAME" >> dir1/summary.txt
