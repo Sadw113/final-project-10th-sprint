@@ -21,6 +21,8 @@ touch dir2/empty
 # #!/bin/bash
 # echo "$1, привет!"
 
+echo '#!/bin/bash' > dir2/hello.sh
+
 echo 'echo "$1, привет!"' >> dir2/hello.sh
 
 # устанавливаем для task/dir2/hello.sh права rwxrw-r--
@@ -38,7 +40,7 @@ cp -r dir2/* dir3/dir4/
 # записываем в task/dir1/summary.txt список файлов с расширением *.txt
 # находящихся в task, включая поддиректории
 
-find -name "*.txt"  | xargs ls -R -r > dir1/summary.txt
+find . -name "*.txt" | xargs ls -R -r > dir1/summary.txt
 
 # дописываем в task/dir1/summary.txt содержимое task/dir2/list.txt
 
